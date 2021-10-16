@@ -1,1 +1,2 @@
-# GDI3
+Contributors:
+LL ME MR AW
