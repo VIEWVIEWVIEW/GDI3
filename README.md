@@ -1,5 +1,5 @@
-Topics: <hr>
+Topics: <br>
 Binary Trees (2-3-4, red-black, balanced)
 
-Contributors: <hr>
+Contributors: <br>
 AW, LL, ME, MR
