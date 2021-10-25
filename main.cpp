@@ -2,16 +2,14 @@
 
 using namespace std;
 
-struct Node 
-{
+struct Node {
 	int key;
 	Node* prev;
 	Node* left;
 	Node* right;
 };
 
-struct Result 
-{
+struct Result {
 	Node* node;
 	bool success;
 	int comparisons;
@@ -19,27 +17,33 @@ struct Result
 
 class BinaryTree {
     public:
-        Node* root;
+        Node *root;
     public:
-        BinaryTree()
-        {
+        BinaryTree(){
             root = nullptr;
         };
         ~BinaryTree(){};
 
-        void insertKey(int k)
+        Result insertKey(int k)
         {
+            /*Rückgabe Vergleiche*/
+            int comp = 0;
+            Node *walk = new Node();
+
+            /*Wenn die Liste leer ist*/
             if(root == nullptr)
             {
                 root = new Node();
                 root->key = k;
                 root->left = nullptr;
                 root->right = nullptr;
+
+                comp = 1;
             }
             else
             {
-                /* Durchlaufen des Baumes über 'temp' */
-                Node *walk = root;
+                /*Zum durchlaufen des Baumes*/
+                walk = root;
 
                 /* Den Knoten finden dem wir 'key' hinzuf. möchten */
                 while((walk->left != nullptr) && (walk->right != nullptr))
@@ -47,50 +51,64 @@ class BinaryTree {
                     if(k < walk->key)
                     {
                         walk = walk->left;
+
+                        comp = comp + 1;
                     }
                     if(k > walk->key)
                     {
                         walk = walk->right;
+
+                        comp = comp + 1;
                     }
                 }
-                /* Wenn new.key kleiner ist als sein Vorgänger */
+            }
+                            /* Wenn new.key kleiner ist als sein Vorgänger */
                 if(k < walk->key)
                 {
                     Node *add = new Node();
                     add->key = k;
+                    add->prev = walk;
                     add->left = nullptr;
                     add->right = nullptr;
 
                     walk->left = add;
+
+                    walk = walk->left;
                 }
                 /* Wenn new.key größer ist als sein Vorgänger */
                 if(k > walk->key)
                 {
                     Node *add = new Node();
                     add->key = k;
+                    add->prev = walk;
                     add->left = nullptr;
                     add->right = nullptr;
 
                     walk->right = add;
+
+                    walk = walk->right;
                 }
-            }
+
+                /*Rückgabe Objekt konstruieren*/
+                Result res;
+                res.comparisons = comp;
+                res.node = walk;
+                res.success = true;
+
+                return res;
         };
 
 };
 
-int main() 
-{
-    BinaryTree *test = new BinaryTree();
 
-    test->insertKey(16);
-    test->insertKey(32);
-    test->insertKey(8);
+int main() {
 
-    cout << test->root->left->key << endl;
-    cout << test->root->right->key;
+    BinaryTree *t = new BinaryTree();
+    Result i = t->insertKey(16);
+    Result ii = t->insertKey(32);
+    Result iii = t->insertKey(8);
 
-    delete test;
-    test = nullptr;
-
-    return 0;
+    cout << i.comparisons << ", " << i.node->key << ", " << i.success << endl;
+    cout << ii.comparisons << ", " << ii.node->key << ", " << ii.success << endl;
+    cout << iii.comparisons << ", " << iii.node->key << ", " << iii.success << endl;
 }
