@@ -8,11 +8,9 @@ struct Node
 
 struct Result
 {
-
 	Node* node;
 	bool success;
 	int comparisons;
-
 }
 
 class BinaryTree
