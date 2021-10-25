@@ -28,8 +28,9 @@ class BinaryTree {
         {
             /*Rückgabe Vergleiche*/
             int comp = 0;
+	    /*Zum durchlaufen*/	
             Node *walk = new Node();
-
+		
             /*Wenn die Liste leer ist*/
             if(root == nullptr)
             {
@@ -37,7 +38,6 @@ class BinaryTree {
                 root->key = k;
                 root->left = nullptr;
                 root->right = nullptr;
-
                 comp = 1;
             }
             else
@@ -51,53 +51,52 @@ class BinaryTree {
                     if(k < walk->key)
                     {
                         walk = walk->left;
-
                         comp = comp + 1;
                     }
                     if(k > walk->key)
                     {
                         walk = walk->right;
-
                         comp = comp + 1;
                     }
                 }
             }
-                            /* Wenn new.key kleiner ist als sein Vorgänger */
-                if(k < walk->key)
-                {
-                    Node *add = new Node();
-                    add->key = k;
-                    add->prev = walk;
-                    add->left = nullptr;
-                    add->right = nullptr;
+		
+            /* Ist der Vorgänger größer */
+	    if(k < walk->key)
+            {
+	    	Node *add = new Node();
+		add->key = k;
+		add->prev = walk;
+		add->left = nullptr;
+		add->right = nullptr;
 
-                    walk->left = add;
+		walk->left = add;
 
-                    walk = walk->left;
-                }
-                /* Wenn new.key größer ist als sein Vorgänger */
-                if(k > walk->key)
-                {
-                    Node *add = new Node();
-                    add->key = k;
-                    add->prev = walk;
-                    add->left = nullptr;
-                    add->right = nullptr;
+		walk = walk->left;
+	    }
+		
+	    /* Ist der Vorgänger kleiner */
+	    if(k > walk->key)
+	    {
+            	Node *add = new Node();
+		add->key = k;
+		add->prev = walk;
+		add->left = nullptr;
+		add->right = nullptr;
 
-                    walk->right = add;
+		walk->right = add;
 
-                    walk = walk->right;
-                }
+		walk = walk->right;
+	    }
+		
+            /*Rückgabe Objekt konstruieren*/
+	    Result res;
+	    res.comparisons = comp;
+	    res.node = walk;
+	    res.success = true;
 
-                /*Rückgabe Objekt konstruieren*/
-                Result res;
-                res.comparisons = comp;
-                res.node = walk;
-                res.success = true;
-
-                return res;
+	    return res;
         };
-
 };
 
 
