@@ -42,10 +42,10 @@ class BinaryTree {
             }
             else
             {
-                /*Zum durchlaufen des Baumes*/
+                /*Zum Durchlaufen des Baumes*/
                 walk = root;
 
-                /* Den Knoten finden dem wir 'key' hinzuf. möchten */
+                /* Den Knoten finden dem der Schlüssel hinzugefügt wird */
                 while((walk->left != nullptr) && (walk->right != nullptr))
                 {
                     if(k < walk->key)
@@ -101,12 +101,12 @@ class BinaryTree {
 
 
 int main() {
-
+    /*Driver Code*/
     BinaryTree *t = new BinaryTree();
     Result i = t->insertKey(16);
     Result ii = t->insertKey(32);
     Result iii = t->insertKey(8);
-
+	
     cout << i.comparisons << ", " << i.node->key << ", " << i.success << endl;
     cout << ii.comparisons << ", " << ii.node->key << ", " << ii.success << endl;
     cout << iii.comparisons << ", " << iii.node->key << ", " << iii.success << endl;
