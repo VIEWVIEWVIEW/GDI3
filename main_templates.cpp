@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-/*struct NOde: Elemente vom Baum*/
+/*struct Node: Elemente vom Baum*/
 template <typename A>
 struct Node {
 	A key;
