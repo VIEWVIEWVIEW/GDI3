@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+/*struct NOde: Elemente vom Baum*/
 template <typename A>
 struct Node {
 	A key;
@@ -9,6 +10,7 @@ struct Node {
 	Node* right;
 };
 
+/*struct Result: Rückgabeobjekt*/
 template <typename B>
 struct Result {
 	Node<B> *node;
@@ -16,6 +18,7 @@ struct Result {
 	int comparisons;
 };
 
+/*class BinaryTree: Implementation der Datenstruktur "Binärer Baum*"*/
 template <typename C>
 class BinaryTree {
     public:
