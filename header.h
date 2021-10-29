@@ -23,7 +23,7 @@ class BinaryTree
         BinaryTree();
         ~BinaryTree();
         
-        Result insertKey(int key);
-        Result searchKey(int key);
-        Result removeKey(int key);
+        Result insertKey(int k);
+        Result searchKey(int k);
+        Result removeKey(int k);
 };
